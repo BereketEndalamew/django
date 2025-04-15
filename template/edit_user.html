@@ -1,0 +1,14 @@
+{%extends 'index.html'%}
+{% block content %}
+<h2>Edit User</h2>
+<div class="d-flex justify-content-center mt-5">
+<form method="post">
+    {% csrf_token %}
+    <label>First Name: <input type="text" name="firstname" value="{{ user.first_name }}"></label><br>
+    <label>Last Name: <input type="text" name="lastname" value="{{ user.last_name }}"></label><br>
+    <label>Username: <input type="text" name="username" value="{{ user.username }}"></label><br>
+    <label>Email: <input type="email" name="email" value="{{ user.email }}"></label><br>
+    <button type="submit">Update</button>
+</form>
+</div>
+{% endblock%}

@@ -1,0 +1,11 @@
+{% extends 'index.html'%}
+{% block content %}
+<h2>Are you sure you want to delete {{ user.username }}?</h2>
+<div class="d-flex justify-content-center mt-5">
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'user_list' %}">Cancel</a>
+    </form>
+</div>
+{% endblock %}

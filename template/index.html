@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href=" {% static 'styles/responsive.css' %}">
 </head>
 <body>
+{% block content %}
 
 <div class="super_container">
 
@@ -31,10 +32,20 @@
                             <nav class="main_nav">
                                 <ul class="d-flex flex-row align-items-start justify-content-start">
                                     <li class="active"><a href="{% static 'index.html'%}">Home</a></li>
-                                    <li><a href="{% static 'about.html'%}">About us</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="{% static 'news.html'%}">News</a></li>
+                                    <!--                                    <li><a href="{% static 'about.html'%}">About us</a></li>-->
+                                    <!--                                    <li><a href="#">Services</a></li>-->
+                                    <!--                                    <li><a href="{% static 'news.html'%}">News</a></li>-->
                                     <li><a href="{% static 'contact.html'%}">Contact</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li>Hello, {{user.first_name}}</li>
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'register' %}">Register</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    <li><a href="{% url 'user_list' %}">View Data</a></li>
+                                    {% endif%}
+
+
                                 </ul>
                             </nav>
                             <div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
@@ -260,11 +271,11 @@
                         <!-- Destination -->
                         <div class="destination item">
                             <div class="destination_image">
-                                <img src="{{baseUrl}}/{{dest.img}}" alt="">
+                                <img src="{{dest.img.url}}" alt="">
                             </div>
                             {% if dest.offer %}
-                            <div class ="spec_offer text-center"><a href="#">Special Offer</a></div>
-                           {% endif %}
+                            <div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+                            {% endif %}
                             <div class="destination_content">
                                 <div class="destination_title"><a href="destinations.html">{{dest.name}}</a></div>
                                 <div class="destination_subtitle"><p> {{dest.desc}}</p></div>
@@ -273,41 +284,41 @@
                         </div>
                         {% endfor %}
 
-<!--                        &lt;!&ndash; Destination &ndash;&gt;-->
-<!--                        <div class="destination item">-->
-<!--                            <div class="destination_image">-->
-<!--                                <img src="{% static 'images/destination_4.jpg' %}" alt="">-->
-<!--                            </div>-->
-<!--                            <div class="destination_content">-->
-<!--                                <div class="destination_title"><a href="destinations.html">Paris</a></div>-->
-<!--                                <div class="destination_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>-->
-<!--                                <div class="destination_price">From $679</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        &lt;!&ndash; Destination &ndash;&gt;-->
+                        <!--                        <div class="destination item">-->
+                        <!--                            <div class="destination_image">-->
+                        <!--                                <img src="{% static 'images/destination_4.jpg' %}" alt="">-->
+                        <!--                            </div>-->
+                        <!--                            <div class="destination_content">-->
+                        <!--                                <div class="destination_title"><a href="destinations.html">Paris</a></div>-->
+                        <!--                                <div class="destination_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>-->
+                        <!--                                <div class="destination_price">From $679</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        &lt;!&ndash; Destination &ndash;&gt;-->
-<!--                        <div class="destination item">-->
-<!--                            <div class="destination_image">-->
-<!--                                <img src="{% static 'images/destination_5.jpg' %}" alt="">-->
-<!--                            </div>-->
-<!--                            <div class="destination_content">-->
-<!--                                <div class="destination_title"><a href="destinations.html">Phi Phi Island</a></div>-->
-<!--                                <div class="destination_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>-->
-<!--                                <div class="destination_price">From $679</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        &lt;!&ndash; Destination &ndash;&gt;-->
+                        <!--                        <div class="destination item">-->
+                        <!--                            <div class="destination_image">-->
+                        <!--                                <img src="{% static 'images/destination_5.jpg' %}" alt="">-->
+                        <!--                            </div>-->
+                        <!--                            <div class="destination_content">-->
+                        <!--                                <div class="destination_title"><a href="destinations.html">Phi Phi Island</a></div>-->
+                        <!--                                <div class="destination_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>-->
+                        <!--                                <div class="destination_price">From $679</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        &lt;!&ndash; Destination &ndash;&gt;-->
-<!--                        <div class="destination item">-->
-<!--                            <div class="destination_image">-->
-<!--                                <img src="{% static 'images/destination_6.jpg' %}" alt="">-->
-<!--                            </div>-->
-<!--                            <div class="destination_content">-->
-<!--                                <div class="destination_title"><a href="{% static 'destinations.html' %}">Mykonos</a></div>-->
-<!--                                <div class="destination_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>-->
-<!--                                <div class="destination_price">From $679</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        &lt;!&ndash; Destination &ndash;&gt;-->
+                        <!--                        <div class="destination item">-->
+                        <!--                            <div class="destination_image">-->
+                        <!--                                <img src="{% static 'images/destination_6.jpg' %}" alt="">-->
+                        <!--                            </div>-->
+                        <!--                            <div class="destination_content">-->
+                        <!--                                <div class="destination_title"><a href="{% static 'destinations.html' %}">Mykonos</a></div>-->
+                        <!--                                <div class="destination_subtitle"><p>Nulla pretium tincidunt felis, nec.</p></div>-->
+                        <!--                                <div class="destination_price">From $679</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
                     </div>
                 </div>
@@ -546,7 +557,8 @@
                         <!-- Footer Contact Item -->
                         <div class="col-xl-4 footer_contact_col">
                             <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-                                <div class="footer_contact_icon"><img src="{% static 'images/trekking.svg' %}" alt=""></div>
+                                <div class="footer_contact_icon"><img src="{% static 'images/trekking.svg' %}" alt="">
+                                </div>
                                 <div class="footer_contact_title">come & drop by</div>
                                 <div class="footer_contact_list">
                                     <ul style="max-width:190px">
@@ -559,7 +571,8 @@
                         <!-- Footer Contact Item -->
                         <div class="col-xl-4 footer_contact_col">
                             <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
-                                <div class="footer_contact_icon"><img src="{% static 'images/around.svg' %}" alt=""></div>
+                                <div class="footer_contact_icon"><img src="{% static 'images/around.svg' %}" alt="">
+                                </div>
                                 <div class="footer_contact_title">send us a message</div>
                                 <div class="footer_contact_list">
                                     <ul>
@@ -592,5 +605,7 @@
 <script src="{% static 'plugins/easing/easing.js' %}"></script>
 <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
+
+{% endblock %}
 </body>
 </html>

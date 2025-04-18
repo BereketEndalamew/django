@@ -1,0 +1,42 @@
+<!-- header.html -->
+
+{% load static %}
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                    <div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+              
+                        <nav class="main_nav">
+                            <ul class="d-flex flex-row align-items-start justify-content-start">
+                              
+                                <li><a href="{% static 'contact.html' %}">Contact</a></li>
+                                {% if user.is_authenticated %}
+                                <li>Hello, {{user.first_name}}</li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% else %}
+                                <li><a href="{% url 'register' %}">Register</a></li>
+                                <li><a href="{% url 'login' %}">Login</a></li>
+                                <li><a href="{% url 'user_list' %}">View Data</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        <div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
+                        <div class="hamburger ml-auto">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header_social d-flex flex-row align-items-center justify-content-start">
+        <!-- Social icons here -->
+    </div>
+</header>
+
+<!-- Menu -->
+<div class="menu">
+    <!-- Menu content here -->
+</div>
